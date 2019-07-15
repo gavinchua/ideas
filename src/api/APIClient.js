@@ -7,7 +7,6 @@ NProgress.configure({ showSpinner: false });
 
 const apiClient = axios.create({
   baseURL: 'data/'
-  // baseURL: 'https://kee.amiculum-digital.biz/Umbraco/api/JsonData/'
 });
 
 apiClient.interceptors.request.use(config => {
@@ -21,12 +20,7 @@ apiClient.interceptors.response.use(response => {
 });
 
 export default {
-  getCalendar(calendar) {
-    return apiClient.get('calendar.json', calendar);
-    //return apiClient.get('CalendarJson', calendar );
-  },
-  getAMChart(amchart) {
-    return apiClient.get('amchart.json', amchart);
-    // return apiClient.get('AmchartJson', amchart );
+  getData(data) {
+    return apiClient.get('data.json', data);
   }
 };
