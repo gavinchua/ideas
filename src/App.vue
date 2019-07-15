@@ -3,11 +3,16 @@
     id="app"
     class="relative"
   >
-    <Header />
-    <main id="page-wrap">
-      <router-view :key="$route.fullPath" />
-    </main>
-    <Footer />
+    <div class="container my-10 m-auto">
+      <Header />
+      <main
+        id="page-wrap"
+        class="m-10"
+      >
+        <router-view :key="$route.fullPath" />
+      </main>
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -25,5 +30,6 @@ export default {
 </script>
 
 <style lang="stylus">
-
+main
+  min-height 55vh
 </style>

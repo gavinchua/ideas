@@ -1,5 +1,8 @@
 <template>
-  <router-link to="/home">
+  <router-link
+    to="/home"
+    class="mr-5"
+  >
     <img
       class="logo"
       alt="Logo"
