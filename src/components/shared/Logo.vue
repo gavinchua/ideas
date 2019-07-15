@@ -15,12 +15,5 @@ export default {
 </script>
 
 <style lang="stylus">
-.logo {
-  height: 45px;
-  width: 116px;
-  @media (min-width: 992px) {
-    height: 60px;
-    width: 155px;
-  }
-}
+
 </style>
