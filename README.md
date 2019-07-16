@@ -1,6 +1,9 @@
 # ideas
 
-## Project setup
+### Data Generator
+https://www.generatedata.com/
+
+### Project setup
 ```
 yarn
 ```
