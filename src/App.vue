@@ -3,7 +3,7 @@
     id="app"
     class="relative"
   >
-    <div class="container my-10 m-auto">
+    <div class="container my-10 m-auto px-3">
       <Header />
       <main
         id="page-wrap"
