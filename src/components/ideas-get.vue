@@ -22,7 +22,7 @@
         :key="i.id"
         class="my-4 px-4 w-full overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4"
       >
-        <div class="bg-gray-400 p-4 item">
+        <div class="bg-gray-400 hover:bg-gray-500 hover:text-white p-4 relative item">
           <h5 class="mb-1">
             {{ i.title }}
           </h5>
@@ -32,6 +32,13 @@
           <p class="text-sm">
             {{ i.body }}
           </p>
+          <a
+            href="#"
+            class="absolute hidden"
+            @click.prevent="deleteItem(i.id)"
+          >
+            <font-awesome-icon icon="trash-alt" />
+          </a>
         </div>
       </div>
     </div>
@@ -39,6 +46,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -52,11 +60,21 @@ export default {
     ])
   },
   methods: {
-    sortByTitle: function() {
+    sortByTitle() {
       this.getAppData.sort((a, b) => a.title.localeCompare(b.title));
     },
-    sortByDate: function() {
+    sortByDate() {
       this.getAppData.sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
+    },
+    deleteItem(id) {
+      console.log(id);
+      axios.post(`http://www.amock.io/api/gavinchua/idea/delete/${id}`)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 };
@@ -65,4 +83,15 @@ export default {
 <style scoped lang="stylus">
 .item
   height 200px
+  @media (min-width: 768px) {
+    height 250px
+  }
+  @media (min-width: 1280px) {
+    height 200px
+  }
+  &:hover a
+    display block
+  a
+    top 5px
+    right 10px
 </style>
