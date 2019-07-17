@@ -1,22 +1,11 @@
 <template>
   <nav class="flex content-center">
     <router-link
-      class="p-5 hover:underline font-semibold"
+      class="p-5 font-semibold hover:text-teal-400"
       to="/new"
     >
+      <font-awesome-icon icon="plus-square" />
       New
-    </router-link>
-    <router-link
-      class="p-5 hover:underline font-semibold"
-      to="/update"
-    >
-      Update
-    </router-link>
-    <router-link
-      class="p-5 hover:underline font-semibold"
-      to="/delete"
-    >
-      Delete
     </router-link>
   </nav>
 </template>
@@ -28,5 +17,8 @@ export default {
 </script>
 
 <style lang="stylus">
+// a
+//   &:focus
+//   &:hover
 
 </style>
