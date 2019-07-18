@@ -18,6 +18,11 @@ const router = new Router({
       component: () => import('@/views/New')
     },
     {
+      path: '/update/:id',
+      name: 'update',
+      component: () => import('@/views/Update')
+    },
+    {
       path: '*',
       redirect: '/'
     }

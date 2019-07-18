@@ -45,7 +45,14 @@
             </p>
             <a
               href="#"
-              class="absolute hidden"
+              class="absolute hidden btn-edit"
+              @click.prevent="editItem(i.id)"
+            >
+              <font-awesome-icon icon="edit" />
+            </a>
+            <a
+              href="#"
+              class="absolute hidden btn-delete"
               @click.prevent="deleteItem(i.id)"
             >
               <font-awesome-icon icon="trash-alt" />
@@ -93,6 +100,10 @@ export default {
       console.log('sortByDate');
       this.getAppData.sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
     },
+    editItem(id) {
+      console.log(id);
+      this.$router.push({ path: `/update/${id}` });
+    },
     deleteItem(id) {
       console.log(id);
       // dispatch should be performed after axios.delete
@@ -123,4 +134,6 @@ export default {
   a
     top 5px
     right 10px
+    &.btn-edit
+      right 35px
 </style>

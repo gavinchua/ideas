@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueLoadersBallBeat from 'vue-loaders/dist/loaders/ball-beat';
 import Vuelidate from 'vuelidate';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlusSquare, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from '@/App';
@@ -15,7 +15,7 @@ import '@/assets/css/main.css';
 Vue.use(VueLoadersBallBeat);
 Vue.use(Vuelidate);
 
-library.add(faPlusSquare, faTrashAlt);
+library.add(faPlusSquare, faTrashAlt, faEdit);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
