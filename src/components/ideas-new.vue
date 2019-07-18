@@ -129,7 +129,7 @@ export default {
       // question is how to get the id for the new data?
       // auto from api/backend?
       this.$store.dispatch('appData/commitAddAppData', this.idea);
-      this.$router.push('Home');
+      this.$router.push('home');
       axios.post(`http://www.amock.io/api/gavinchua/idea/new/${this.idea}`)
         .then(function(response) {
           console.log(response);
