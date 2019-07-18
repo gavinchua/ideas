@@ -11,6 +11,12 @@ const getters = {
 const mutations = {
   setAppData: (state, payload) => {
     state.appData = payload;
+  },
+  removeAppData: (state, payload) => {
+    const index = state.appData.findIndex(item => item.id === payload);
+    if (index !== -1) {
+      state.appData.splice(index, 1);
+    }
   }
 };
 
@@ -22,6 +28,9 @@ const actions = {
       .then(appData => {
         commit('setAppData', appData);
       });
+  },
+  commitRemoveAppData: ({ commit }, payload) => {
+    commit('removeAppData', payload);
   }
 };
 

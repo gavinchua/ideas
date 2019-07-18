@@ -51,13 +51,13 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'IdeasGet',
-  created() {
-    this.$store.dispatch('appData/fetchAppData');
-  },
   computed: {
     ...mapGetters('appData', [
       'getAppData'
     ])
+  },
+  created() {
+    this.$store.dispatch('appData/fetchAppData');
   },
   methods: {
     sortByTitle() {
@@ -68,7 +68,9 @@ export default {
     },
     deleteItem(id) {
       console.log(id);
-      axios.post(`http://www.amock.io/api/gavinchua/idea/delete/${id}`)
+      // dispatch should be performed after axios.delete .then
+      this.$store.dispatch('appData/commitRemoveAppData', id);
+      axios.delete(`http://www.amock.io/api/gavinchua/idea/delete/${id}`)
         .then(function(response) {
           console.log(response);
         })
