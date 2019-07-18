@@ -1,5 +1,8 @@
 <template>
   <div class="ideasnew">
+    <h1 class="text-3xl font-bold mb-8">
+      Create new idea
+    </h1>
     <form
       id="formCreate"
       action=""

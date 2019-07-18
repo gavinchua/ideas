@@ -1,5 +1,8 @@
 <template>
   <div class="ideasget">
+    <h1 class="text-3xl font-bold mb-8">
+      Ideas Board
+    </h1>
     <div class="flex justify-end -mx-4">
       <a
         class="inline-block mx-2"
