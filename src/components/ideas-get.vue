@@ -22,7 +22,7 @@
         :key="i.id"
         class="my-4 px-4 w-full overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4"
       >
-        <div class="bg-gray-400 hover:bg-gray-500 hover:text-white p-4 relative item">
+        <div class="bg-gray-400 hover:bg-gray-500 hover:text-white px-4 py-6 relative item">
           <h5 class="mb-1">
             {{ i.title }}
           </h5>
@@ -56,19 +56,17 @@ export default {
       'getAppData'
     ])
   },
-  created() {
-    this.$store.dispatch('appData/fetchAppData');
-  },
   methods: {
     sortByTitle() {
       this.getAppData.sort((a, b) => a.title.localeCompare(b.title));
     },
     sortByDate() {
+      console.log('sortByDate');
       this.getAppData.sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
     },
     deleteItem(id) {
       console.log(id);
-      // dispatch should be performed after axios.delete .then
+      // dispatch should be performed after axios.delete
       this.$store.dispatch('appData/commitRemoveAppData', id);
       axios.delete(`http://www.amock.io/api/gavinchua/idea/delete/${id}`)
         .then(function(response) {
