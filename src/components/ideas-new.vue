@@ -64,6 +64,13 @@
         >
           Submit
         </button>
+        <router-link
+          class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-3"
+          tag="button"
+          to="/"
+        >
+          Cancel
+        </router-link>
       </div>
     </form>
   </div>
@@ -115,6 +122,11 @@ export default {
     },
     sendFormData() {
       console.log(this.idea);
+      // dispatch should be performed after axios.post
+      // question is how to get the id for the new data?
+      // auto from api/backend?
+      this.$store.dispatch('appData/commitAddAppData', this.idea);
+      this.$router.push('Home');
       axios.post(`http://www.amock.io/api/gavinchua/idea/new/${this.idea}`)
         .then(function(response) {
           console.log(response);
