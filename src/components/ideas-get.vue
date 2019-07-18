@@ -38,7 +38,7 @@
               {{ i.title }}
             </h5>
             <p class="text-xs mb-3">
-              {{ i.created_date }}
+              {{ i.created_date | formatDate }}
             </p>
             <p class="text-sm">
               {{ i.body }}
@@ -63,6 +63,13 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'IdeasGet',
+  filters: {
+    formatDate(date) {
+      const thisDate = new Date(date);
+      const thisDateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+      return thisDate.toLocaleDateString('en-GB', thisDateOptions);
+    }
+  },
   data() {
     return {
       isLoading: true
