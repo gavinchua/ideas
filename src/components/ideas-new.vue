@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { required, minLength } from 'vuelidate/lib/validators';
 
 export default {
