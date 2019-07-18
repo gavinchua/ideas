@@ -17,6 +17,9 @@ const mutations = {
     if (index !== -1) {
       state.appData.splice(index, 1);
     }
+  },
+  addAppData: (state, payload) => {
+    state.appData.push(payload);
   }
 };
 
@@ -31,6 +34,9 @@ const actions = {
   },
   commitRemoveAppData: ({ commit }, payload) => {
     commit('removeAppData', payload);
+  },
+  commitAddAppData: ({ commit }, payload) => {
+    commit('addAppData', payload);
   }
 };
 
