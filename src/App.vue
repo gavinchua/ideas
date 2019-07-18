@@ -25,6 +25,9 @@ export default {
   components: {
     Header,
     Footer
+  },
+  created() {
+    this.$store.dispatch('appData/fetchAppData');
   }
 };
 </script>
