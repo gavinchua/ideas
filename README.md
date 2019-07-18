@@ -1,7 +1,7 @@
 # Ideas Board
 
 ## URL
-https://gavinchua.com/ideas/
+http://gavinchua.com/ideas/
 
 ### Data Generator
 https://www.generatedata.com/
