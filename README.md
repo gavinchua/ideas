@@ -1,7 +1,13 @@
-# ideas
+# Ideas Board
+
+## URL
+https://gavinchua.com/ideas/
 
 ### Data Generator
 https://www.generatedata.com/
+
+### Tailwind Grids Generator
+https://tailwindgrids.com/
 
 ### Project setup
 ```
@@ -39,7 +45,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Tailwind  
 https://tailwindcss.com/
 
-###Vue Style Guide  
+### Vue Style Guide  
 https://vuejs.org/v2/style-guide/
 
 ### Vue Tutorials
@@ -116,6 +122,7 @@ https://vuejs.org/v2/style-guide/
 61. [vue-grid-layout](https://github.com/jbaysolutions/vue-grid-layout)
 62. [vue2-perfect-scrollbar](https://github.com/mercs600/vue2-perfect-scrollbar)
 63. [vue-star-rating](https://github.com/craigh411/vue-star-rating)
+64. [vue-loaders](https://github.com/Hokid/vue-loaders)
 
 ### Nuxt Plugins
    [Awesome Nuxt.js](https://github.com/nuxt-community/awesome-nuxt)
