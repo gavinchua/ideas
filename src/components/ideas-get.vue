@@ -69,7 +69,7 @@
         </div>
       </paginate>
       <paginate-links
-        class="relative text-center"
+        class="relative text-center mt-4 md:absolute md:bottom-0"
         for="getAppData"
         :async="true"
         :limit="2"
@@ -77,7 +77,7 @@
         :classes="{ 'li': 'inline' }"
         :hide-single-page="true"
       />
-      <div class="paginate-details md:flex md:align-items-center p-3">
+      <div class="paginate-details p-3 md:flex md:align-items-center">
         <div class="text-center md:text-left md:w-1/2">
           <span v-if="$refs.paginator">
             {{ $refs.paginator.pageItemsCount }} shown
@@ -187,9 +187,7 @@ export default {
 
 /deep/.paginate-links
   transform translate(-50%,-50%)
-  position relative
   left 50%
-  bottom -15px
   li
     cursor pointer
     padding 0 5px
