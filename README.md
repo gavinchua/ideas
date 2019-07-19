@@ -34,6 +34,12 @@ yarn test
 yarn lint
 ```
 
+### Serve your build files
+yarn global add serve
+```
+serve dist
+```
+
 ### Upgrade packages
 ```
 yarn upgrade-interactive --latest
