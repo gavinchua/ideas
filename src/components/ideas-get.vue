@@ -169,6 +169,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+/* purgecss start ignore */
 .item
   height 200px
   @media (min-width: 768px) {
@@ -193,4 +194,5 @@ export default {
     padding 0 5px
     &.active
       font-weight bold
+/* purgecss end ignore */
 </style>
