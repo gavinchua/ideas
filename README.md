@@ -42,10 +42,13 @@ yarn upgrade-interactive --latest
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### Tailwind  
+### Tailwind
 https://tailwindcss.com/
 
-### Vue Style Guide  
+### Tailwind & PurgeCSS
+https://medium.com/@kyis/vue-tailwind-purgecss-the-right-way-c70d04461475
+
+### Vue Style Guide
 https://vuejs.org/v2/style-guide/
 
 ### Vue Tutorials
@@ -123,6 +126,7 @@ https://vuejs.org/v2/style-guide/
 62. [vue2-perfect-scrollbar](https://github.com/mercs600/vue2-perfect-scrollbar)
 63. [vue-star-rating](https://github.com/craigh411/vue-star-rating)
 64. [vue-loaders](https://github.com/Hokid/vue-loaders)
+65. [vue-paginate](https://github.com/TahaSh/vue-paginate)
 
 ### Nuxt Plugins
    [Awesome Nuxt.js](https://github.com/nuxt-community/awesome-nuxt)
