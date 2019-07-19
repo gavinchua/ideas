@@ -1,5 +1,5 @@
 <template>
-  <div class="ideasget">
+  <div class="ideasget relative">
     <h1 class="text-3xl font-bold mb-8">
       Ideas Board
     </h1>
@@ -27,37 +27,69 @@
           Sort by Date
         </a>
       </div>
-      <div class="flex flex-wrap -mx-4">
-        <div
-          v-for="i in getAppData"
-          :key="i.id"
-          class="my-4 px-4 w-full overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4"
-        >
-          <div class="bg-gray-400 hover:bg-gray-500 hover:text-white px-4 py-6 relative item">
-            <h5 class="mb-1">
-              {{ i.title }}
-            </h5>
-            <p class="text-xs mb-3">
-              {{ i.created_date | formatDate }}
-            </p>
-            <p class="text-sm">
-              {{ i.body }}
-            </p>
-            <a
-              href="#"
-              class="absolute hidden btn-edit"
-              @click.prevent="editItem(i.id)"
-            >
-              <font-awesome-icon icon="edit" />
-            </a>
-            <a
-              href="#"
-              class="absolute hidden btn-delete"
-              @click.prevent="deleteItem(i.id)"
-            >
-              <font-awesome-icon icon="trash-alt" />
-            </a>
+      <paginate
+        ref="paginator"
+        name="getAppData"
+        tag="div"
+        :list="getAppData"
+        :per="itemPerPage"
+      >
+        <div class="flex flex-wrap -mx-4">
+          <div
+            v-for="i in paginated('getAppData')"
+            :key="i.id"
+            class="my-4 px-4 w-full overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4"
+          >
+            <div class="bg-gray-400 hover:bg-gray-500 hover:text-white px-4 py-6 relative item">
+              <h5 class="mb-1">
+                {{ i.title }}
+              </h5>
+              <p class="text-xs mb-3">
+                {{ i.created_date | formatDate }}
+              </p>
+              <p class="text-sm">
+                {{ i.body }}
+              </p>
+              <a
+                href="#"
+                class="absolute hidden btn-edit"
+                @click.prevent="editItem(i.id)"
+              >
+                <font-awesome-icon icon="edit" />
+              </a>
+              <a
+                href="#"
+                class="absolute hidden btn-delete"
+                @click.prevent="deleteItem(i.id)"
+              >
+                <font-awesome-icon icon="trash-alt" />
+              </a>
+            </div>
           </div>
+        </div>
+      </paginate>
+      <paginate-links
+        class="relative text-center"
+        for="getAppData"
+        :async="true"
+        :limit="2"
+        :show-step-links="true"
+        :classes="{ 'li': 'inline' }"
+        :hide-single-page="true"
+      />
+      <div class="paginate-details md:flex md:align-items-center p-3">
+        <div class="text-center md:text-left md:w-1/2">
+          <span v-if="$refs.paginator">
+            {{ $refs.paginator.pageItemsCount }} shown
+          </span>
+        </div>
+        <div class="text-center md:text-right mt-3 md:mt-0 md:w-1/2">
+          <a
+            href="#"
+            @click.prevent="toggleAllEvents"
+          >
+            {{ toggleAllEventsText }}
+          </a>
         </div>
       </div>
     </template>
@@ -65,8 +97,12 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import axios from 'axios';
+import VuePaginate from 'vue-paginate';
 import { mapGetters } from 'vuex';
+
+Vue.use(VuePaginate);
 
 export default {
   name: 'IdeasGet',
@@ -79,7 +115,10 @@ export default {
   },
   data() {
     return {
-      isLoading: true
+      isLoading: true,
+      itemPerPage: 12,
+      toggleAllEventsText: 'Show all',
+      paginate: ['getAppData']
     };
   },
   computed: {
@@ -115,6 +154,15 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    toggleAllEvents() {
+      if (this.$refs.paginator && this.itemPerPage === 12) {
+        this.itemPerPage = 10000000;
+        this.toggleAllEventsText = 'Show pagination';
+      } else {
+        this.itemPerPage = 12;
+        this.toggleAllEventsText = 'Show all';
+      }
     }
   }
 };
@@ -136,4 +184,15 @@ export default {
     right 10px
     &.btn-edit
       right 35px
+
+/deep/.paginate-links
+  transform translate(-50%,-50%)
+  position relative
+  left 50%
+  bottom -15px
+  li
+    cursor pointer
+    padding 0 5px
+    &.active
+      font-weight bold
 </style>
