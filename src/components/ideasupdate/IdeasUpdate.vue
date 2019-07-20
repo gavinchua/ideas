@@ -1,7 +1,7 @@
 <template>
   <div class="ideasupdate">
     <h1 class="text-3xl font-bold mb-8">
-      Update an idea (WIP)
+      Update an idea
     </h1>
     <IdeasUpdateItem />
   </div>

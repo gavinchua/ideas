@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between flex-wrap">
+  <header class="flex items-center justify-between">
     <Logo />
     <Menu />
   </header>

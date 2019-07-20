@@ -17,8 +17,5 @@ export default {
 </script>
 
 <style lang="stylus">
-// a
-//   &:focus
-//   &:hover
 
 </style>

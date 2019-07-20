@@ -1,6 +1,6 @@
 <template>
   <router-link
-    to="/home"
+    to="/"
     class="mr-5"
   >
     <img

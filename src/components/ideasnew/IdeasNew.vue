@@ -14,11 +14,6 @@ export default {
   name: 'IdeasNew',
   components: {
     IdeasNewItem
-  },
-  data() {
-    return {
-
-    };
   }
 };
 </script>

@@ -48,16 +48,16 @@ export default {
   },
   methods: {
     editItem(id) {
-      console.log(id);
       this.$router.push({ path: `/update/${id}` });
     },
     deleteItem(id) {
-      console.log(id);
       // dispatch should be performed after axios.delete
       this.$store.dispatch('appData/commitRemoveAppData', id);
       axios.delete(`http://www.amock.io/api/gavinchua/idea/delete/${id}`)
         .then(function(response) {
           console.log(response);
+          // should be here
+          // this.$store.dispatch('appData/commitRemoveAppData', id);
         })
         .catch(function(error) {
           console.log(error);
@@ -70,12 +70,12 @@ export default {
 <style scoped lang="stylus">
 /* purgecss start ignore */
 .item
-  height 200px
+  height 240px
   @media (min-width: 768px) {
-    height 250px
+    height 280px
   }
   @media (min-width: 1280px) {
-    height 200px
+    height 240px
   }
   &:hover a
     display block

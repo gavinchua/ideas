@@ -38,13 +38,6 @@
         >
           Body
         </label>
-        <!-- <input
-          id="body"
-          v-model="idea.body"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          placeholder="body"
-        > -->
         <textarea
           id="body"
           v-model="idea.body"
@@ -52,7 +45,9 @@
         >
           Body
         </textarea>
-        <span class="text-red-500 text-xs italic">{{ charactersCheck }}</span>
+        <span class="text-red-500 text-xs italic">
+          {{ charactersCheck }}
+        </span>
         <div
           v-if="submitted && $v.idea.body.$error"
           class="text-red-500 text-xs italic"
@@ -155,16 +150,10 @@ export default {
       if (bodyLengthCheck <= 15) {
         if (bodyLengthCheck > 0) {
           return `Max characters is ${bodyLengthLimit}. You have ${bodyLengthCheck} characters remaining`;
-        } else {
-          return null;
         }
-      } else {
-        return null;
       }
+      return null;
     }
-  },
-  created() {
-
   },
   mounted() {
     this.idea = this.getIdeaById(this.$route.params.id);
