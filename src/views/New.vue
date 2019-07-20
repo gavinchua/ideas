@@ -1,16 +1,16 @@
 <template>
   <div class="new">
-    <ideasNew />
+    <IdeasNew />
   </div>
 </template>
 
 <script>
-import ideasNew from '@/components/ideas-new';
+import IdeasNew from '@/components/ideasnew/IdeasNew';
 
 export default {
   name: 'New',
   components: {
-    ideasNew
+    IdeasNew
   }
 };
 </script>

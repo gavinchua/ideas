@@ -35,37 +35,11 @@
         :per="itemPerPage"
       >
         <div class="flex flex-wrap -mx-4">
-          <div
-            v-for="i in paginated('getAppData')"
-            :key="i.id"
-            class="my-4 px-4 w-full overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4"
-          >
-            <div class="bg-gray-400 hover:bg-gray-500 hover:text-white px-4 py-6 relative item">
-              <h5 class="mb-1">
-                {{ i.title }}
-              </h5>
-              <p class="text-xs mb-3">
-                {{ i.created_date | formatDate }}
-              </p>
-              <p class="text-sm">
-                {{ i.body }}
-              </p>
-              <a
-                href="#"
-                class="absolute hidden btn-edit"
-                @click.prevent="editItem(i.id)"
-              >
-                <font-awesome-icon icon="edit" />
-              </a>
-              <a
-                href="#"
-                class="absolute hidden btn-delete"
-                @click.prevent="deleteItem(i.id)"
-              >
-                <font-awesome-icon icon="trash-alt" />
-              </a>
-            </div>
-          </div>
+          <IdeasGetItem
+            v-for="item in paginated('getAppData')"
+            :key="item.id"
+            :item="item"
+          />
         </div>
       </paginate>
       <paginate-links
@@ -102,16 +76,14 @@ import axios from 'axios';
 import VuePaginate from 'vue-paginate';
 import { mapGetters } from 'vuex';
 
+import IdeasGetItem from '@/components/ideasget/IdeasGetItem';
+
 Vue.use(VuePaginate);
 
 export default {
   name: 'IdeasGet',
-  filters: {
-    formatDate(date) {
-      const thisDate = new Date(date);
-      const thisDateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-      return thisDate.toLocaleDateString('en-GB', thisDateOptions);
-    }
+  components: {
+    IdeasGetItem
   },
   data() {
     return {
@@ -139,22 +111,6 @@ export default {
       console.log('sortByDate');
       this.getAppData.sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
     },
-    editItem(id) {
-      console.log(id);
-      this.$router.push({ path: `/update/${id}` });
-    },
-    deleteItem(id) {
-      console.log(id);
-      // dispatch should be performed after axios.delete
-      this.$store.dispatch('appData/commitRemoveAppData', id);
-      axios.delete(`http://www.amock.io/api/gavinchua/idea/delete/${id}`)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
     toggleAllEvents() {
       if (this.$refs.paginator && this.itemPerPage === 12) {
         this.itemPerPage = 10000000;
@@ -170,22 +126,6 @@ export default {
 
 <style scoped lang="stylus">
 /* purgecss start ignore */
-.item
-  height 200px
-  @media (min-width: 768px) {
-    height 250px
-  }
-  @media (min-width: 1280px) {
-    height 200px
-  }
-  &:hover a
-    display block
-  a
-    top 5px
-    right 10px
-    &.btn-edit
-      right 35px
-
 /deep/.paginate-links
   transform translate(-50%,-50%)
   left 50%

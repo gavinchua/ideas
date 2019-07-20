@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <ideasGet />
+    <IdeasGet />
   </div>
 </template>
 
 <script>
-import ideasGet from '@/components/ideas-get';
+import IdeasGet from '@/components/ideasget/IdeasGet';
 
 export default {
   name: 'Home',
   components: {
-    ideasGet
+    IdeasGet
   }
 };
 </script>
