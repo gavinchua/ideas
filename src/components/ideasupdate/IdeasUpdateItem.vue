@@ -79,13 +79,13 @@
         >
           Submit
         </button>
-        <router-link
+        <a
+          href="#"
           class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-3"
-          tag="button"
-          to="/"
+          @click.prevent="cancel"
         >
           Cancel
-        </router-link>
+        </a>
       </div>
     </form>
   </div>
@@ -115,7 +115,8 @@ export default {
         body: '',
         created_date: ''
       },
-      submitted: false
+      submitted: false,
+      myToast: null
     };
   },
   validations: {
@@ -142,6 +143,10 @@ export default {
     this.idea = this.getIdeaById(this.$route.params.id);
   },
   methods: {
+    cancel() {
+      this.myToast.goAway(0);
+      this.$router.push('/');
+    },
     submit() {
       this.submitted = true;
       this.$v.$touch();
@@ -169,7 +174,7 @@ export default {
       this.showToasted();
     },
     showToasted() {
-      this.$toasted.show('Idea had been updated successfully!', {
+      this.myToast = this.$toasted.show('Idea had been updated successfully!', {
         position: 'bottom-center',
         singleton: true,
         fitToScreen: true,

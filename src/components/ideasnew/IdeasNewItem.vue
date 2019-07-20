@@ -64,13 +64,6 @@
         >
           Submit
         </button>
-        <!-- <router-link
-          class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-3"
-          tag="button"
-          to="/"
-        >
-          Cancel
-        </router-link> -->
         <a
           href="#"
           class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-3"
@@ -162,8 +155,6 @@ export default {
       // router push should be performed after axios.post
       this.showToasted();
     },
-    // let myToast = this.$toasted.show("Holla !!");
-    // myToast.text("Changing the text !!!").goAway(1500);
     showToasted() {
       this.idea = {
         id: '',
