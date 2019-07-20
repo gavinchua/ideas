@@ -64,13 +64,20 @@
         >
           Submit
         </button>
-        <router-link
+        <!-- <router-link
           class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-3"
           tag="button"
           to="/"
         >
           Cancel
-        </router-link>
+        </router-link> -->
+        <a
+          href="#"
+          class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-3"
+          @click.prevent="cancel"
+        >
+          Cancel
+        </a>
       </div>
     </form>
   </div>
@@ -95,7 +102,8 @@ export default {
         body: '',
         created_date: ''
       },
-      submitted: false
+      submitted: false,
+      myToast: null
     };
   },
   validations: {
@@ -115,6 +123,10 @@ export default {
       return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
       );
+    },
+    cancel() {
+      this.myToast.goAway(0);
+      this.$router.push('/');
     },
     submit() {
       // question is how to get the id for the new data?
@@ -150,8 +162,17 @@ export default {
       // router push should be performed after axios.post
       this.showToasted();
     },
+    // let myToast = this.$toasted.show("Holla !!");
+    // myToast.text("Changing the text !!!").goAway(1500);
     showToasted() {
-      this.$toasted.show('Idea had been added successfully!', {
+      this.idea = {
+        id: '',
+        title: '',
+        body: '',
+        created_date: ''
+      };
+      this.submitted = false;
+      this.myToast = this.$toasted.show('Idea had been added successfully!', {
         position: 'bottom-center',
         singleton: true,
         fitToScreen: true,
