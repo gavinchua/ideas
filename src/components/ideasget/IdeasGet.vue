@@ -125,7 +125,7 @@ export default {
 
 <style scoped lang="stylus">
 /* purgecss start ignore */
-/deep/.paginate-links
+.paginate-links >>>
   transform translate(-50%,-50%)
   left 50%
   li
