@@ -18,6 +18,12 @@ const mutations = {
   addAppData: (state, payload) => {
     state.appData.push(payload);
   },
+  updateAppData: (state, payload) => {
+    const index = state.appData.findIndex(item => item.id === payload.id);
+    if (index !== -1) {
+      state.appData.splice(index, 1, payload);
+    }
+  },
   removeAppData: (state, payload) => {
     const index = state.appData.findIndex(item => item.id === payload);
     if (index !== -1) {
@@ -37,6 +43,9 @@ const actions = {
   },
   commitAddAppData: ({ commit }, payload) => {
     commit('addAppData', payload);
+  },
+  commitUpdateAppData: ({ commit }, payload) => {
+    commit('updateAppData', payload);
   },
   commitRemoveAppData: ({ commit }, payload) => {
     commit('removeAppData', payload);

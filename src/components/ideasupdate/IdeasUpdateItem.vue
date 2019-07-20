@@ -154,10 +154,10 @@ export default {
     },
     sendFormData() {
       console.log(this.idea);
-      // dispatch should be performed after axios.post
-      //this.$store.dispatch('appData/commitUpdateAppData', this.idea);
+      // dispatch should be performed after axios.put
+      this.$store.dispatch('appData/commitUpdateAppData', this.idea);
       //this.$router.push('home');
-    //   axios.post(`http://www.amock.io/api/gavinchua/idea/update/${this.idea}`)
+    //   axios.put(`http://www.amock.io/api/gavinchua/idea/update/${this.idea}`)
     //     .then(function(response) {
     //       console.log(response);
     //     })
