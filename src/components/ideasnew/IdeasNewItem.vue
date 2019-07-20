@@ -115,25 +115,44 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      } else {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.idea));
-        this.sendFormData();
       }
+
+      console.log('ADDED SUCCESS!! :-)\n\n' + JSON.stringify(this.idea));
+      this.sendFormData();
     },
     sendFormData() {
-      console.log(this.idea);
       // dispatch should be performed after axios.post
       // question is how to get the id for the new data?
       // auto from api/backend?
       this.$store.dispatch('appData/commitAddAppData', this.idea);
-      this.$router.push('home');
       axios.post(`http://www.amock.io/api/gavinchua/idea/new/${this.idea}`)
         .then(function(response) {
           console.log(response);
+          // should be here
+          // this.$store.dispatch('appData/commitAddAppData', this.idea);
+          // this.showToasted();
         })
         .catch(function(error) {
           console.log(error);
         });
+      // router push should be performed after axios.post
+      this.showToasted();
+    },
+    showToasted() {
+      this.$toasted.show('Idea had been added successfully!', {
+        position: 'bottom-center',
+        singleton: true,
+        fitToScreen: true,
+        action: [
+          {
+            text: 'X',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0);
+              this.$router.push('/');
+            }
+          }
+        ]
+      });
     }
   }
 };
