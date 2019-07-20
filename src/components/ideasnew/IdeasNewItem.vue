@@ -52,6 +52,7 @@
         >
           Body
         </textarea>
+        <span class="text-red-500 text-xs italic">{{ charactersCheck }}</span>
         <div
           v-if="submitted && $v.idea.body.$error"
           class="text-red-500 text-xs italic"
@@ -119,6 +120,23 @@ export default {
         required,
         minLength: minLength(5),
         maxLength: maxLength(140)
+      }
+    }
+  },
+  computed: {
+    charactersCheck() {
+      const bodyLength = this.idea.body.length;
+      const bodyLengthLimit = 140;
+      const bodyLengthCheck = bodyLengthLimit - bodyLength;
+      console.log(bodyLengthCheck);
+      if (bodyLengthCheck <= 15) {
+        if (bodyLengthCheck > 0) {
+          return `Max characters is ${bodyLengthLimit}. You have ${bodyLengthCheck} characters remaining`;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
       }
     }
   },
