@@ -129,7 +129,9 @@ export default {
       );
     },
     cancel() {
-      this.myToast.goAway(0);
+      if (this.myToast) {
+        this.myToast.goAway(0);
+      }
       this.$router.push('/');
     },
     submit() {
