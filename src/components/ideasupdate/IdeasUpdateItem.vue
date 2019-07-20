@@ -92,7 +92,7 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 import { required, minLength } from 'vuelidate/lib/validators';
 
@@ -113,7 +113,7 @@ export default {
       idea: {
         title: '',
         body: '',
-        created_date: new Date()
+        created_date: ''
       },
       submitted: false
     };
@@ -136,10 +136,10 @@ export default {
     ])
   },
   created() {
-    this.idea = this.getIdeaById(this.$route.params.id);
+
   },
   mounted() {
-
+    this.idea = this.getIdeaById(this.$route.params.id);
   },
   methods: {
     submit() {
@@ -147,23 +147,42 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      } else {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.idea));
-        this.sendFormData();
       }
+
+      console.log('UPDATED SUCCESS!! :-)\n\n' + JSON.stringify(this.idea));
+      this.sendFormData();
     },
     sendFormData() {
-      console.log(this.idea);
       // dispatch should be performed after axios.put
       this.$store.dispatch('appData/commitUpdateAppData', this.idea);
-      //this.$router.push('home');
-    //   axios.put(`http://www.amock.io/api/gavinchua/idea/update/${this.idea}`)
-    //     .then(function(response) {
-    //       console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
+      axios.put(`http://www.amock.io/api/gavinchua/idea/update/${this.idea}`)
+        .then(function(response) {
+          console.log(response);
+          // should be here
+          // this.$store.dispatch('appData/commitUpdateAppData', this.idea);
+          // this.showToasted();
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      // toasted should be performed after axios.put
+      this.showToasted();
+    },
+    showToasted() {
+      this.$toasted.show('Idea had been updated successfully!', {
+        position: 'bottom-center',
+        singleton: true,
+        fitToScreen: true,
+        action: [
+          {
+            text: 'X',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0);
+              this.$router.push('/');
+            }
+          }
+        ]
+      });
     }
   }
 };
