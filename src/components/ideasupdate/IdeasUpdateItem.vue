@@ -155,9 +155,7 @@ export default {
     sendFormData() {
       console.log(this.idea);
       // dispatch should be performed after axios.post
-      // question is how to get the id for the new data?
-      // auto from api/backend?
-      this.$store.dispatch('appData/commitUpdateAppData', this.idea);
+      //this.$store.dispatch('appData/commitUpdateAppData', this.idea);
       //this.$router.push('home');
     //   axios.post(`http://www.amock.io/api/gavinchua/idea/update/${this.idea}`)
     //     .then(function(response) {
