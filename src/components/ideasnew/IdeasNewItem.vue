@@ -90,9 +90,10 @@ export default {
   data() {
     return {
       idea: {
+        id: '',
         title: '',
         body: '',
-        created_date: new Date()
+        created_date: ''
       },
       submitted: false
     };
@@ -110,7 +111,20 @@ export default {
     }
   },
   methods: {
+    generateID() {
+      return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+      );
+    },
     submit() {
+      // question is how to get the id for the new data?
+      // auto from api/backend?
+      this.idea.id = this.generateID();
+      console.log('New ID', this.idea.id);
+
+      this.idea.created_date = new Date();
+      console.log('New Date', this.idea.created_date);
+
       this.submitted = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
@@ -122,8 +136,6 @@ export default {
     },
     sendFormData() {
       // dispatch should be performed after axios.post
-      // question is how to get the id for the new data?
-      // auto from api/backend?
       this.$store.dispatch('appData/commitAddAppData', this.idea);
       axios.post(`http://www.amock.io/api/gavinchua/idea/new/${this.idea}`)
         .then(function(response) {
