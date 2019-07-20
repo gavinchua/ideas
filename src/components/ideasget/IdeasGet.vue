@@ -72,7 +72,6 @@
 
 <script>
 import Vue from 'vue';
-import axios from 'axios';
 import VuePaginate from 'vue-paginate';
 import { mapGetters } from 'vuex';
 

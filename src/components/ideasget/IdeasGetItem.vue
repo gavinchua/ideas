@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'IdeasGetItem',
   filters: {
