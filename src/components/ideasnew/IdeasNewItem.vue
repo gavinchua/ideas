@@ -17,7 +17,7 @@
           v-model="idea.title"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
-          placeholder="title"
+          placeholder="Title"
         >
         <div
           v-if="submitted && $v.idea.title.$error"
@@ -38,13 +38,20 @@
         >
           Body
         </label>
-        <input
+        <!-- <input
           id="body"
           v-model.trim="$v.idea.body.$model"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           placeholder="body"
+        > -->
+        <textarea
+          id="body"
+          v-model="idea.body"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         >
+          Body
+        </textarea>
         <div
           v-if="submitted && $v.idea.body.$error"
           class="text-red-500 text-xs italic"
@@ -54,6 +61,9 @@
           </template>
           <template v-if="submitted && !$v.idea.body.minLength">
             Length must be at least 5 characters.
+          </template>
+          <template v-if="submitted && !$v.idea.body.maxLength">
+            Length cannot be more than 140 characters.
           </template>
         </div>
       </div>
@@ -78,7 +88,7 @@
 
 <script>
 import axios from 'axios';
-import { required, minLength } from 'vuelidate/lib/validators';
+import { required, minLength, maxLength } from 'vuelidate/lib/validators';
 
 export default {
   name: 'IdeasNewItem',
@@ -107,7 +117,8 @@ export default {
       },
       body: {
         required,
-        minLength: minLength(5)
+        minLength: minLength(5),
+        maxLength: maxLength(140)
       }
     }
   },
