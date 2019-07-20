@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueLoadersBallBeat from 'vue-loaders/dist/loaders/ball-beat';
+import Toasted from 'vue-toasted';
 import Vuelidate from 'vuelidate';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlusSquare, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +14,10 @@ import 'vue-loaders/dist/vue-loaders.css';
 import '@/assets/css/main.css';
 
 Vue.use(VueLoadersBallBeat);
+Vue.use(Toasted, {
+  iconPack: 'fontawesome',
+  router
+});
 Vue.use(Vuelidate);
 
 library.add(faPlusSquare, faTrashAlt, faEdit);
