@@ -11,61 +11,70 @@
       />
     </template>
     <template v-else>
-      <div class="flex justify-end -mx-4">
-        <a
-          class="inline-block mx-2"
-          href="#"
-          @click.prevent="sortByTitle"
-        >
-          Sort by Name
-        </a>
-        <a
-          class="inline-block mx-2"
-          href="#"
-          @click.prevent="sortByDate"
-        >
-          Sort by Date
-        </a>
-      </div>
-      <paginate
-        ref="paginator"
-        name="getAppData"
-        tag="div"
-        :list="getAppData"
-        :per="itemPerPage"
-      >
-        <div class="flex flex-wrap -mx-4">
-          <IdeasGetItem
-            v-for="item in paginated('getAppData')"
-            :key="item.id"
-            :item="item"
-          />
-        </div>
-      </paginate>
-      <paginate-links
-        class="relative text-center mt-4 md:absolute md:bottom-0"
-        for="getAppData"
-        :async="true"
-        :limit="2"
-        :show-step-links="true"
-        :classes="{ 'li': 'inline' }"
-        :hide-single-page="true"
-      />
-      <div class="paginate-details p-3 md:flex md:align-items-center">
-        <div class="text-center md:text-left md:w-1/2">
-          <span v-if="$refs.paginator">
-            {{ $refs.paginator.pageItemsCount }} shown
-          </span>
-        </div>
-        <div class="text-center md:text-right mt-3 md:mt-0 md:w-1/2">
+      <template v-if="getAppData.length">
+        <div class="flex justify-end -mx-4">
           <a
+            class="inline-block mx-2"
             href="#"
-            @click.prevent="toggleAllEvents"
+            @click.prevent="sortByTitle"
           >
-            {{ toggleAllEventsText }}
+            Sort by Name
+          </a>
+          <a
+            class="inline-block mx-2"
+            href="#"
+            @click.prevent="sortByDate"
+          >
+            Sort by Date
           </a>
         </div>
-      </div>
+        <paginate
+          ref="paginator"
+          name="getAppData"
+          tag="div"
+          :list="getAppData"
+          :per="itemPerPage"
+        >
+          <div class="flex flex-wrap -mx-4">
+            <IdeasGetItem
+              v-for="item in paginated('getAppData')"
+              :key="item.id"
+              :item="item"
+            />
+          </div>
+        </paginate>
+        <paginate-links
+          class="relative text-center mt-4 md:absolute md:bottom-0"
+          for="getAppData"
+          :async="true"
+          :limit="2"
+          :show-step-links="true"
+          :classes="{ 'li': 'inline' }"
+          :hide-single-page="true"
+        />
+        <div class="paginate-details p-3 md:flex md:align-items-center">
+          <div class="text-center md:text-left md:w-1/2">
+            <span v-if="$refs.paginator">
+              {{ $refs.paginator.pageItemsCount }} shown
+            </span>
+          </div>
+          <div class="text-center md:text-right mt-3 md:mt-0 md:w-1/2">
+            <a
+              href="#"
+              @click.prevent="toggleAllEvents"
+            >
+              {{ toggleAllEventsText }}
+            </a>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="text-center">
+          The Board is empty.
+          <br><br>
+          Please add an idea by clicking on the "New" button.
+        </div>
+      </template>
     </template>
   </div>
 </template>
