@@ -1,4 +1,5 @@
 import axios from 'axios';
+import APIClient from '@/api/APIClient';
 
 const state = {
   appData: []
@@ -33,13 +34,12 @@ const mutations = {
 };
 
 const actions = {
-  async fetchAppData({ commit }) {
-    await axios
-      .get('http://www.amock.io/api/gavinchua/ideas')
-      .then(r => r.data)
-      .then(appData => {
-        commit('setAppData', appData);
-      });
+  async fetchAppData({ commit }, calendar) {
+    await APIClient.getCalendar(calendar)
+      .then(response => {
+        commit('setAppData', response.data);
+      })
+      .catch(error => console.log(error));
   },
   commitAddAppData: ({ commit }, payload) => {
     commit('addAppData', payload);

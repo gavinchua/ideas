@@ -3,6 +3,7 @@
     id="app"
     class="relative"
   >
+    <vue-progress-bar />
     <div class="container my-10 m-auto px-3">
       <Header />
       <main
