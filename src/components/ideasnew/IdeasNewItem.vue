@@ -157,7 +157,7 @@ export default {
       this.idea.id = this.generateID();
       console.log('New ID', this.idea.id);
 
-      this.idea.created_date = new Date();
+      this.idea.created_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
       console.log('New Date', this.idea.created_date);
 
       this.submitted = true;
