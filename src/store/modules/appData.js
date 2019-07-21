@@ -17,7 +17,8 @@ const mutations = {
     state.appData = payload;
   },
   addAppData: (state, payload) => {
-    state.appData.push(payload);
+    //state.appData.push(payload);
+    state.appData = [...state.appData, payload];
   },
   updateAppData: (state, payload) => {
     const index = state.appData.findIndex(item => item.id === payload.id);
