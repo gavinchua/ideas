@@ -57,6 +57,9 @@ https://medium.com/@kyis/vue-tailwind-purgecss-the-right-way-c70d04461475
 ### Vue Style Guide
 https://vuejs.org/v2/style-guide/
 
+### Vue.js and Vuex - best practices for managing your state by DawidMyslak
+https://gist.github.com/DawidMyslak/2b046cca5959427e8fb5c1da45ef7748
+
 ### Vue Tutorials
 1. [Traversy Media](https://www.youtube.com/user/TechGuyWeb)
 2. [DesignCourse](https://www.youtube.com/user/DesignCourse)
