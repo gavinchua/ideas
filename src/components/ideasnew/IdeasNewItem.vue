@@ -14,6 +14,7 @@
         </label>
         <input
           id="title"
+          ref="title"
           v-model="idea.title"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
@@ -132,7 +133,13 @@ export default {
       return null;
     }
   },
+  mounted() {
+    this.focusInput();
+  },
   methods: {
+    focusInput() {
+      this.$refs.title.focus();
+    },
     generateID() {
       return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
