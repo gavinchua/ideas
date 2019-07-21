@@ -72,7 +72,7 @@
         </label>
         <input
           id="created_date"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline cursor-not-allowed"
           type="text"
           :value="idea.created_date | formatDate"
           readonly
